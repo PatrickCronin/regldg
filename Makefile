@@ -21,7 +21,7 @@ all: alt.o altlist.o build_structs.o char_set.o data.o debug.o \
 	$(LINK) alt.o altlist.o build_structs.o char_set.o data.o \
 	debug.o grouplist.o grouprecord.o main.o memory.o \
 	parse_regex.o program_args.o re_perm.o silist.o tnode.o \
-	vlr.o vlrlist.o -o regldg
+	vlr.o vlrlist.o -lm -o regldg
 alt.o: alt.h memory.h
 	$(COMPILE) alt.c -o alt.o
 altlist.o: altlist.h altlist.c alt.h memory.h
