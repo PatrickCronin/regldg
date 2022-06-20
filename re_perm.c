@@ -1,19 +1,8 @@
-/* regldg version 1.0.0
-** a regular expression grammar language dictionary generator
-** (c) Patrick Cronin 2004-2006
-** pcronin@loyola.edu
-**
-** Permission is granted to use, alter, and distribute this
-** code under the terms of the GNU Public License.  A copy
-** of this license should have been included with this
-** software in the file gpl.txt.  If you need a copy, please
-** visit http://www.gnu.org/copyleft/gpl.html.
-**
+/*
 ** re_perm.c
-** A list of charsets.  When a single character from each of the 
+** A list of charsets.  When a single character from each of the
 ** charsets is selected, a single word of the regular expression
 ** grammar is created.
-** 21 August 2004
 */
 
 #include <stdio.h>
