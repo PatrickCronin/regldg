@@ -1,4 +1,4 @@
-## 2022-06-19
+## 2022-06-19 (1.0.1)
 
 * Fix compile error (add -libm to compile command)
 

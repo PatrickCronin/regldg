@@ -80,14 +80,14 @@ a:visited { color: #3c2168 }
 	<td height=3 bgcolor="#ffffff"></td>
 </tr>
 <tr>
-	<td align="right" valign="middle" class="version">Current version: 1.0.0</td>
+	<td align="right" valign="middle" class="version">Current version: 1.0.1</td>
 </tr>
 <tr>
 	<td colspan=3>
 	<h2>Your results</h2><hr>
 <?php
 /* Get parameters */
-$regldg_dir = '/Users/pcronin/briefcase/Projects/passwords/regldg-1.0.0';
+$regldg_dir = '/Users/pcronin/briefcase/Projects/passwords/regldg-1.0.1';
 $debug_code = 1;
 if (isset($_REQUEST['debug_code'])) { $debug_code = $_REQUEST['debug_code']; }
 $universe_set = 7;
