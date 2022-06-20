@@ -127,7 +127,7 @@ void parse_regex_copy_chars(char_set dest, char_set src, int start_pos, int num_
 /* this function does no error checking */
 {
     int i = start_pos;
-    
+
     while (i < num_bytes + start_pos) {
 	char_set_g_insert_char(dest, char_set_g_char_n(src, i));
 	i++;
@@ -155,7 +155,7 @@ int parse_regex_scan (char_set c, tnode node, char * top_stop_chars)
 			}
 			g->last_chartype_parsed = CT_GROUP_FINISH;
 			return (1);
-		} 
+		}
 		/* topstring stop char return */
 		else if (index(top_stop_chars, char_set_p_char_n(c, 0)) != NULL)
 		{
@@ -198,12 +198,12 @@ int parse_regex_scan (char_set c, tnode node, char * top_stop_chars)
 			} else {
 				parse_regex(c, NULL, PR_IN_GROUP);
 			}
-	
-			// pop the last element in last_group_started, 
+
+			// pop the last element in last_group_started,
 			// and push it onto finished groups
 			silist_insert(g->finished_groups, silist_get_element_n(g->last_group_started, silist_get_size(g->last_group_started) - 1));
 			silist_remove_last(g->last_group_started);
-	
+
 			g->num_groups_completed++;
 			char_set_g_adv_pos(c, 1);
 			if (node) {
@@ -416,7 +416,7 @@ void parse_regex_pass_alternation (char_set c, tnode node)
     char_set_g_adv_pos(c, 1);
 
     g->last_chartype_parsed = CT_ALTERNATION;
-    
+
     if (node) {
 		parse_regex_print_c(c, D_Parse_Regex_Eachstep, "Parsed alternation");
 	}
@@ -555,7 +555,7 @@ void parse_regex_pass_escape_sequence (char_set c, int in_char_class, tnode node
 void parse_regex_pass_metachar (char_set c)
 {
     char_set_p_assert_usability(c, "parse_regex_pass_metachar", "Premature end of metachar");
-    
+
     switch (char_set_p_char_n(c, 0)) {
 	case 'a': /* alarm / bell */
 	    g->last_value_parsed = 7;
@@ -784,13 +784,13 @@ void parse_regex_pass_char_class (char_set c, tnode node)
     int negate_char_class = 0;
     int num_chars = 0;
     int saved_ucl = g->universe_check_code;
-    
+
     cs = char_set_g_constructor();
 
     char_set_p_assert_usability(c, "parse_regex_pass_char_class", "Premature end of character class");
 
 	g->current_atom_start_pos = char_set_g_get_pos(c);
-	
+
     /* The ^ has a special meaning if it is the first character of the class */
     if (char_set_p_char_n(c, 0) == '^') {
 		g->last_chartype_parsed = CT_NEGATE_CHAR_CLASS;
@@ -883,9 +883,9 @@ void parse_regex_pass_char_class (char_set c, tnode node)
 					/* the endpoint of this regex is not a valid range
 					** endpoint.  So, let's just make the - a character
 					** in the class, as well as the mcc */
-	
+
 					/* do a pseudo pass of the '-' */
-					if ( (!negate_char_class) && 
+					if ( (!negate_char_class) &&
 					 (g->universe_check_code & K_CHECK_CHARS) &&
 					 (char_set_g_index(g->universe, '-') == -1))
 					{
@@ -906,7 +906,7 @@ void parse_regex_pass_char_class (char_set c, tnode node)
 					char_set_g_add_char(cs, '-');
 					num_chars++;
 					range_flag = 0;
-					
+
 					/* the following will be used if we don't want
 					** to allow a - char with invalid endpoints */
 					/* parse_regex_print_c(D_Error, "parse_regex_pass_char_class: invalid range end character");
@@ -980,7 +980,7 @@ void parse_regex_pass_char_class (char_set c, tnode node)
 			}
 			/* is it a valid range? */
 			/* 1. look back.  Is that a valid character? */
-			if ( (g->last_chartype_parsed == CT_CHAR) || 
+			if ( (g->last_chartype_parsed == CT_CHAR) ||
 				 (g->last_chartype_parsed == CT_NSC) ||
 				 (g->last_chartype_parsed == CT_CONTROL) ||
 				 (g->last_chartype_parsed == CT_METACHAR))
@@ -1028,13 +1028,13 @@ void parse_regex_pass_char_class (char_set c, tnode node)
 				} else {
 					parse_regex_print_c(c, D_Error, "parse_regex_pass_char_class: Range start and end characters are not in the same class.  The use of this is dangerous and deprecated.");
 					exit(-31);
-				}		    
+				}
 			} else {
 				char_set_g_add_char(cs, g->last_value_parsed);
 			}
 			break;
 		}
-	
+
 		char_set_p_assert_usability(c, "parse_regex_pass_char_class", "Premature end of character class");
 		g->current_atom_start_pos = char_set_g_get_pos(c);
     }
@@ -1086,18 +1086,18 @@ void parse_regex_pass_char_class (char_set c, tnode node)
 void parse_regex_print_range (char_set c, int range_start_pos)
 {
     int saved = g->current_atom_start_pos;
-    
+
     g->current_atom_start_pos = range_start_pos;
     parse_regex_print_c(c, D_Parse_Regex_Eachstep, "Parsed as a range");
     g->current_atom_start_pos = saved;
 }
-	
+
 void parse_regex_print_char_class (char_set c)
 {
     char * buf;
     int bufsize;
     int saved = g->current_atom_start_pos;
-    
+
     g->current_atom_start_pos = g->char_class_start;
     bufsize = 23 + ((int) log10(g->num_char_classes_started)) + 1 + 1;
     buf = (char *) check_malloc (sizeof(char) * bufsize);
@@ -1149,7 +1149,7 @@ void parse_regex_pass_quantifier (char_set c)  /* !na */
     }
 
     char_set_p_assert_usability(c, "parse_regex_pass_quantifier", "Premature end of quantifier");
-    
+
     ch = char_set_p_char_n(c, 0);
     switch (ch) {
 	case '*':
@@ -1195,7 +1195,7 @@ void parse_regex_pass_braced_quantifier (char_set c)
     char_set_g_adv_pos(c, 1);
 
     char_set_p_assert_usability(c, "parse_regex_pass_braced_quantifier", "Premature end of braced quantifier");
-    
+
     /* is variable length */
     g->last_value_parsed_extra = -1;
 
@@ -1205,7 +1205,7 @@ void parse_regex_pass_braced_quantifier (char_set c)
     } else {
 	g->last_value_parsed_extra = parse_regex_pass_braced_quantifier_number(c);
     }
-    
+
     char_set_p_assert_usability(c, "parse_regex_pass_braced_quantifier", "Premature end of braced quantifier");
 
     if (char_set_p_char_n(c, 0) != '}') {
@@ -1235,7 +1235,7 @@ int parse_regex_pass_braced_quantifier_number (char_set c)
 
     val = parse_regex_read_dec_val (c, n, 10);
     char_set_g_adv_pos(c, n);
-    
+
     return(val);
 }
 
@@ -1307,7 +1307,7 @@ void parse_regex_pass_control_char (char_set c)
     g->last_chartype_parsed = CT_CONTROL;
     char_set_g_adv_pos(c, 1);
 }
-	      
+
 int parse_regex_pass_decimal_char(char_set c)
 {
     char_set_p_assert_usability(c, "parse_regex_pass_decimal_char", "Premature end of octal charcter");
@@ -1402,7 +1402,7 @@ int parse_regex_read_dec_val (char_set c, int num_chars, int base)
     char digit;
     int val;
     int i;
-    
+
     for (i=num_chars - 1; i >= 0; i--) {
 	digit = char_set_p_char_n(c, i);
 	switch (digit) {
@@ -1446,7 +1446,7 @@ void parse_regex_pass_char (char_set c) /* !Na */
 
     g->last_value_parsed = char_set_p_char_n(c, 0);
     g->last_chartype_parsed = CT_CHAR;
-    
+
     char_set_g_adv_pos(c, 1);
 }
 
@@ -1460,7 +1460,7 @@ int parse_regex_pass_variable_length_number (char_set c, const char * format, co
     /* prepare an error string */
     bufsize = 27 + strlen(format) + 1;
     buf = (char *) check_malloc (sizeof(char) * bufsize);
-    sprintf(buf, "Premature end of %s character", format); 
+    sprintf(buf, "Premature end of %s character", format);
     buf[bufsize-1] = '\0';
 
     char_set_p_assert_usability(c, "parse_regex_pass_variable_length_number", buf);
@@ -1512,7 +1512,7 @@ int parse_regex_pass_variable_length_number (char_set c, const char * format, co
     /* move to the end of the number */
     char_set_g_adv_pos(c, n);
 
-/* take out for updates 
+/* take out for updates
     bufsize = 23 + strlen(format) + 1;
     sprintf(buf, "Parsed variable length %s", format);
     buf[bufsize-1] = '\0';
@@ -1533,7 +1533,7 @@ int parse_regex_pass_braced_number (char_set c, const char * format, const char 
     /* prepare an error string */
     bufsize = 27 + strlen(format) + 1;
     buf = (char *) check_malloc (sizeof(char) * bufsize);
-    sprintf(buf, "Premature end of %s character", format); 
+    sprintf(buf, "Premature end of %s character", format);
     buf[bufsize-1] = '\0';
 
     char_set_p_assert_usability(c, "parse_regex_pass_braced_number", buf);
@@ -1564,7 +1564,7 @@ int parse_regex_pass_braced_number (char_set c, const char * format, const char 
 	n++;
     }
 
-    /* if we finished looking for characters because we are at 
+    /* if we finished looking for characters because we are at
     ** the end of the char_set */
     if (char_set_g_get_pos(c) + n >= char_set_g_size(c)) {
 	bufsize = 63 + strlen(format) + 1;
@@ -1614,7 +1614,7 @@ int parse_regex_pass_braced_number (char_set c, const char * format, const char 
 			exit(-22);
 		}
     }
-    
+
     /* pass the last '}' */
 
     char_set_g_adv_pos(c, n + 1);
@@ -1641,7 +1641,7 @@ void parse_regex_print_c (char_set c, int dlevel, const char * msg)
     /* print the regex into the char buf */
     bufsize = char_set_g_size(g->regex) + 1;
     buf = (char*) check_malloc (sizeof(char) * (bufsize));
-    
+
     while (n < char_set_g_size(g->regex)) {
 		sprintf(buf + n, "%c", char_set_g_char_n(g->regex, n));
 		n++;
@@ -1666,7 +1666,7 @@ void parse_regex_print_c (char_set c, int dlevel, const char * msg)
 
     debug_print(dlevel, buf);
     debug_print(dlevel, msg);
-    
+
     free (buf);
 }
 

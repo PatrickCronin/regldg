@@ -39,7 +39,7 @@ a:visited { color: #3c2168 }
 </tr>
 <tr>
 	<td height=56>
-	
+
 	<!-- Info, Download, Documentation, Contact table -->
 	<table border=0 cellpadding=0 cellspacing=0 width="100%" height="100%" valign="middle" align="center">
 	<tr>
@@ -53,7 +53,7 @@ a:visited { color: #3c2168 }
 		<td><a href="contact.html"><img src="regldg_header_contact.gif" border=0></a><br></td>
 	</tr>
 	</table>
-	
+
 	</td>
 </tr>
 <tr>
@@ -61,7 +61,7 @@ a:visited { color: #3c2168 }
 </tr>
 <tr>
 	<td height="33">
-	
+
 	<!-- Try it -->
 	<table border=0 cellpadding=0 cellspacing=0 width="100%" height="100%" valign="middle" align="center">
 	<form method="post" action="tryit.php">
@@ -73,7 +73,7 @@ a:visited { color: #3c2168 }
 	</tr>
 	</form>
 	</table>
-	
+
 	</td>
 </tr>
 <tr>
@@ -130,35 +130,35 @@ if (count($broken_input)) {
 	if ($universe != '') { array_push($command, escapeshellarg("--universe=$universe")); }
 	array_push($command, '--file=-');
 	#array_push($command, escapeshellarg($regex));
-	
+
 	/* Re-direct output */
 	$pid = getmypid();
 	array_push($command, '1>/tmp/regldg.stdout.' . $pid );
 	array_push($command, '2>/tmp/regldg.stderr.' . $pid );
-	
+
 	/* Run command */
 	chdir($regldg_dir);
 	$handle = popen( implode(' ', $command), "w" );
 	fwrite($handle, $regex);
 	pclose($handle);
-	
+
 	/* Read and delete output files */
 	$stdout = file('/tmp/regldg.stdout.' . $pid);
 	$stderr = file('/tmp/regldg.stderr.' . $pid);
 	unlink('/tmp/regldg.stdout.' . $pid);
 	unlink('/tmp/regldg.stderr.' . $pid);
-	
+
 	$stdout = preg_replace('/^(.*)$/e', "stripslashes(htmlspecialchars('\\1'))", $stdout);
 	$stderr = preg_replace('/^(.*)$/e', "stripslashes(htmlspecialchars('\\1'))", $stderr);
-	
+
 	# If it is an (Error) ^^^^ line (or any other ^^^ line), replace the spaces with &nbsp;
 	$stdout = preg_replace('/( +)(\^+)$/e', "preg_replace('/ /','&nbsp;', '\\1').'\\2'", $stdout);
 	$stderr = preg_replace('/( +)(\^+)$/e', "preg_replace('/ /','&nbsp;', '\\1').'\\2'", $stderr);
-	
+
 	/* Display output */
 	array_pop($command); array_pop($command); array_pop($command);
 	array_push($command, '"' . $regex . '"');
-	
+
 	print '<table border=0 cellpadding=0 cellspacing=0 width=533 align="center">' . "\n";
 	print '<tr>' . "\n";
 	print '	<td colspan=4 width=533 valign="top" height=29><img src="terminal_top.gif"><br></td>' . "\n";
@@ -195,7 +195,7 @@ if (count($broken_input)) {
 	The stripslashes() function is used (in addition to other methods) to clean the output here on
 	this webpage.
 	<p><br>
-	
+
 	<h2>Advanced usage options</h2><hr>
 	<table border=0 cellpadding=3 cellspacing=0>
 	<form method="post" action="tryit.php">
@@ -206,10 +206,10 @@ if (count($broken_input)) {
 	<tr><td>--universe-set=<input type="text" size=3 maxlength=3 name="universe_set" value="<?php if (isset($_REQUEST['universe_set'])) { print $_REQUEST['universe_set']; } else { print '7'; } ?>"></td></tr>
 	<tr><td>--universe-checking=<input type="text" size=1 maxlength=1 name="universe_checking" value="<?php if (isset($_REQUEST['universe_checking'])) { print $_REQUEST['universe_checking']; } else { print '3'; } ?>"></td></tr>
 	<tr><td>--max-length=<input type="text" size=3 maxlength=3 name="max_length" value="<?php if (isset($_REQUEST['max_length'])) { print $_REQUEST['max_length']; } else { print '8'; } ?>"></td></tr>
-	<tr><td>--universe=<input type="text" size=25 name="universe" value="<?php if (isset($_REQUEST['universe'])) { print htmlspecialchars(stripslashes($_REQUEST['universe'])); } ?>"></td></tr>	
+	<tr><td>--universe=<input type="text" size=25 name="universe" value="<?php if (isset($_REQUEST['universe'])) { print htmlspecialchars(stripslashes($_REQUEST['universe'])); } ?>"></td></tr>
 	</form>
 	</table>
-	
+
 	</td>
 </tr>
 </table>

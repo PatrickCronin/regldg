@@ -61,7 +61,7 @@ void re_perm_free (re_perm p)
 }
 
 void re_perm_generate_words (re_perm p)
-{    
+{
     char_set word = char_set_g_constructor();
 
 	if ((g->num_words_output < 0) ||
@@ -130,7 +130,7 @@ void re_perm_add_backref_text (re_perm p, char_set word, int br, int stop)
 void re_perm_output_word (char_set word)
 {
     int l;
-    
+
     if (char_set_g_size(word) <= g->max_word_length) {
 		for (l = 0; l < char_set_g_size(word); l++) {
 			if (g->readable_output && !isprint(char_set_g_char_n(word, l))) {

@@ -27,7 +27,7 @@ void silist_init(silist s)
 int silist_find(silist s, int n)
 {
     int c=0;
-    
+
     while (c < s->size) {
 	if (s->list[c] == n) {
 	    return(c);
@@ -81,7 +81,7 @@ silist silist_copy_deep(silist oldlist)
 {
     int n;
     silist newlist = silist_constructor();
-    
+
     newlist->size = oldlist->size;
     newlist->list = (int *) check_malloc (sizeof(int) * (newlist->size));
 

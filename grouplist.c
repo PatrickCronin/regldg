@@ -27,11 +27,11 @@ void grouplist_insert (grouplist l, group rec)
 void grouplist_free (grouplist l)
 {
     int i;
-    
+
     for (i = 0; i < l->size; i++) {
 	free(l->list[i]);
     }
-    
+
     free(l->list);
     l->size = 0;
 }

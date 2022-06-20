@@ -27,11 +27,11 @@ void vlrlist_insert (vlrlist l, vlr rec)
 void vlrlist_free (vlrlist l)
 {
     int i;
-    
+
     for (i = 0; i < l->size; i++) {
 	free(l->list[i]);
     }
-    
+
     free(l->list);
     l->size = 0;
 }
@@ -46,7 +46,7 @@ int vlrlist_get_cur_length (vlrlist vlist, int tnode_id)
 	}
 	vlist_cnt++;
     }
-    
+
     fprintf(stderr, "vlist: getting current length of a non-existent tnode!\n");
     exit (-1);
 }

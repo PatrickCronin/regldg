@@ -130,7 +130,7 @@ void program_args_parse(int argc, char ** argv)
 		program_args_print_usage(g->progname);
 	    }
 	    g->universe_check_code = useful_int;
-	 
+
 	    debug_print(D_Program_Args, "Set universe_check_code to %d", useful_int);
 	}
 	else if (strcmp(argv[0], "-m") == 0) {
@@ -243,13 +243,13 @@ void program_args_parse(int argc, char ** argv)
 			debug_print(D_Error, "When explicitly setting a character universe, you must start with [ and end with ]!");
 			program_args_print_usage(g->progname);
 		}
-		
+
 		/* Force universe checking off temporarily */
 		useful_int = g->universe_check_code;
 		g->universe_check_code &= 2;
-		
+
 		g->last_chartype_parsed = CT_CHAR_CLASS_START;
-		
+
 		char_set_g_adv_pos(g->regex, 1);
 		/* NOTE: Negated character classes will be relative to the current universe,
 		** which would be either the default, or the one specified on the command line _iff_
@@ -263,7 +263,7 @@ void program_args_parse(int argc, char ** argv)
 		char_set_g_free(g->universe);
 		g->universe = char_set_g_constructor();
 		char_set_g_deep_copy(g->universe, g->last_class); /* Got it here! */
-		
+
 		/* Clean up */
 		char_set_g_free(g->regex);
 		char_set_g_deep_copy(g->regex, temp_regex);
@@ -274,7 +274,7 @@ void program_args_parse(int argc, char ** argv)
 		g->last_value_parsed = 0;
 		g->last_value_parsed_extra = 0;
 		g->current_atom_start_pos = 0;
-		
+
 	    debug_print(D_Program_Args, "Set character universe to:");
 	    if (g->debug_code & D_Program_Args) {
 	    	char_set_g_display(g->universe);
@@ -290,23 +290,23 @@ void program_args_parse(int argc, char ** argv)
 		/* Read in char class, parse it, and set universe to its results */
 		temp_regex = char_set_g_constructor();
 		char_set_g_deep_copy(temp_regex, g->regex);
-		
+
 		char_set_g_free(g->regex);
 		g->regex = char_set_g_constructor();
 		char_set_g_init(g->regex, argv[0] + 11);
-		
+
 		/* Make sure it starts with [ */
 		if (char_set_g_char_n(g->regex, 0) != '[') {
 			debug_print(D_Error, "When explicitly setting a character universe, you must start with [ and end with ]!");
 			program_args_print_usage(g->progname);
 		}
-		
+
 		/* Force universe checking off temporarily */
 		useful_int = g->universe_check_code;
 		g->universe_check_code &= 2;
-		
+
 		g->last_chartype_parsed = CT_CHAR_CLASS_START;
-		
+
 		char_set_g_adv_pos(g->regex, 1);
 		/* NOTE: Negated character classes will be relative to the current universe,
 		** which would be either the default, or the one specified on the command line _iff_
@@ -320,7 +320,7 @@ void program_args_parse(int argc, char ** argv)
 		char_set_g_free(g->universe);
 		g->universe = char_set_g_constructor();
 		char_set_g_deep_copy(g->universe, g->last_class); /* Got it here! */
-		
+
 		/* Clean up */
 		char_set_g_free(g->regex);
 		char_set_g_deep_copy(g->regex, temp_regex);
@@ -331,7 +331,7 @@ void program_args_parse(int argc, char ** argv)
 		g->last_value_parsed = 0;
 		g->last_value_parsed_extra = 0;
 		g->current_atom_start_pos = 0;
-		
+
 	    debug_print(D_Program_Args, "Set character universe to:");
 	    if (g->debug_code & D_Program_Args) {
 	    	char_set_g_display(g->universe);
@@ -389,7 +389,7 @@ void program_args_parse(int argc, char ** argv)
 
 		regex_file = argv[0];
 	    got_regex = 1;
-	    
+
 	    debug_print(D_Program_Args, "Will get the regex from file %s", argv[0]);
 	}
 	else if (strncmp(argv[0], "--file=", 7) == 0) {
@@ -408,7 +408,7 @@ void program_args_parse(int argc, char ** argv)
 
 		regex_file = argv[0] + (7*sizeof(char));
 	    got_regex = 1;
-	    
+
 	    debug_print(D_Program_Args, "Will get the regex from file %s", argv[0] + (7*sizeof(char)));
 	}
 	else {
@@ -459,7 +459,7 @@ void program_args_parse(int argc, char ** argv)
 	if (g->stop_code == 'p') {
 		g->debug_code |= D_Parse_Regex_Eachstep;
 	}
-	
+
     debug_print(D_Program_Args, "using regex: %s", char_set_g_get_set(g->regex));
 }
 
@@ -494,6 +494,6 @@ void program_args_print_usage(char * progname)
 	fprintf(stderr, "\t-f filename\n");
 	fprintf(stderr, "\t--file=filename\n");
 	fprintf(stderr, "\t\tRead the regex from a file (- is stdin).\n");
-	
+
     exit(-1);
 }

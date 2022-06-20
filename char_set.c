@@ -39,7 +39,7 @@ void char_set_g_init(char_set c, char * str)
 void char_set_g_insert_string(char_set c, char * str)
 {
     int size = strlen(str);
-    
+
     c->set = (char *) check_realloc (c->set, sizeof(char) * (c->size + size + 1));
     strncpy(c->set + (sizeof(char) * c->size), str, size + 1);
     c->size += size;
@@ -74,7 +74,7 @@ void char_set_g_add_universe(char_set c, int universe_int)
       Universe 128:  Math +-=
     */
     int two_power = K_NUM_UNIVERSE_SETS;
-   
+
     char universe_1[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char universe_2[] = "abcdefghijklmnopqrstuvwxyz";
     char universe_4[] = "0123456789";
@@ -83,7 +83,7 @@ void char_set_g_add_universe(char_set c, int universe_int)
     char universe_32[] = "(){}[]";
     char universe_64[] = "~\\/|";
     char universe_128[] = "+-=";
-   
+
     char *all_universes[K_NUM_UNIVERSE_SETS] = { universe_1, universe_2, universe_4, universe_8, universe_16, universe_32, universe_64, universe_128 };
 
     int universe_set_sizes[K_NUM_UNIVERSE_SETS] = { 26, 26, 10, 8, 10, 6, 4, 3 };
@@ -200,7 +200,7 @@ void char_set_g_clip_front_dont_use_this_function (char_set c, int n)
 	debug_print(D_Error, "char_set_clip_front: trying to clip more characters than are in the set!");
 	exit(-14);
     }
-    
+
     /* if we are clipping the whole buffer */
     if (c->size == n) {
 	free (c->set);
@@ -251,14 +251,14 @@ void char_set_p_assert_usability (char_set c, const char * func_name, const char
 	debug_print(D_Char_Set, "Size = %d, Position = %d", c->size, c->pos);
 	exit(-20);
     }
-    
+
     /* if we reach here to return, then the set is good! */
 }
 
 void char_set_g_union_str (char_set c, const char * str, int str_len)
 {
     int i = 0;
-    
+
     while (i < str_len) {
 	char_set_g_add_char(c, str[i]);
 	i++;
@@ -341,7 +341,7 @@ char_set char_set_g_create_complement (char_set c)
     complement = char_set_g_constructor();
 
     u_size = char_set_g_size(all_chars);
-    
+
     for (i = 0; i < u_size; i++) {
 	if (char_set_g_index(c, all_chars->set[i]) == -1) {
 	    char_set_g_add_char(complement, all_chars->set[i]);
