@@ -1,17 +1,6 @@
-/* regldg version 1.0.0
-** a regular expression grammar language dictionary generator
-** (c) Patrick Cronin 2004-2006
-** pcronin@loyola.edu
-**
-** Permission is granted to use, alter, and distribute this
-** code under the terms of the GNU Public License.  A copy
-** of this license should have been included with this
-** software in the file gpl.txt.  If you need a copy, please
-** visit http://www.gnu.org/copyleft/gpl.html.
-**
+/*
 ** vlrlist.c
 ** A list of vlrs.
-** 21 August 2004
 */
 
 #include <stdio.h>
@@ -38,11 +27,11 @@ void vlrlist_insert (vlrlist l, vlr rec)
 void vlrlist_free (vlrlist l)
 {
     int i;
-    
+
     for (i = 0; i < l->size; i++) {
 	free(l->list[i]);
     }
-    
+
     free(l->list);
     l->size = 0;
 }
@@ -57,7 +46,7 @@ int vlrlist_get_cur_length (vlrlist vlist, int tnode_id)
 	}
 	vlist_cnt++;
     }
-    
+
     fprintf(stderr, "vlist: getting current length of a non-existent tnode!\n");
     exit (-1);
 }

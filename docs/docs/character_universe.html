@@ -40,7 +40,7 @@ a:visited { color: #3c2168 }
 </tr>
 <tr>
 	<td height=56>
-	
+
 	<!-- Info, Download, Documentation, Contact table -->
 	<table border=0 cellpadding=0 cellspacing=0 width="100%" height="100%" valign="middle" align="center">
 	<tr>
@@ -54,7 +54,7 @@ a:visited { color: #3c2168 }
 		<td><a href="../contact.html"><img src="../regldg_header_contact.gif" border=0></a><br></td>
 	</tr>
 	</table>
-	
+
 	</td>
 </tr>
 <tr>
@@ -62,7 +62,7 @@ a:visited { color: #3c2168 }
 </tr>
 <tr>
 	<td height="33">
-	
+
 	<!-- Try it -->
 	<table border=0 cellpadding=0 cellspacing=0 width="100%" height="100%" valign="middle" align="center">
 	<form method="post" action="../tryit.php">
@@ -74,14 +74,14 @@ a:visited { color: #3c2168 }
 	</tr>
 	</form>
 	</table>
-	
+
 	</td>
 </tr>
 <tr>
 	<td height=3 bgcolor="#ffffff"></td>
 </tr>
 <tr>
-	<td align="right" valign="middle" class="version">Current version: 1.0.0</td>
+	<td align="right" valign="middle" class="version">Current version: 1.0.1</td>
 </tr>
 <tr>
 	<td colspan=3>
@@ -97,7 +97,7 @@ a:visited { color: #3c2168 }
 	does what it does with character and meta-character classes.  The character
 	universe is the group of characters that regldg is allowed to use to make the
 	words of the output dictionary.
-	
+
 	Lets look at an example. Given the regular expression <b>.</b> , what do
 	you expect the output of regldg to be?  Well, it is clear that each word output
 	will be only one character long, but which characters will those be?  Could they
@@ -152,7 +152,7 @@ a:visited { color: #3c2168 }
 		<td width=4 bgcolor="#ffffff"></td>
 		<td width=499 bgcolor="#ffffff" style="font-family: monaco; font-size: 9pt">
 		&gt; regldg &quot;--universe=[ABC]&quot; &quot;.{2}&quot;<br>
-		AA<br>BA<br>CA<br>AB<br>BB<br>CB<br>AC<br>BC<br>CC 
+		AA<br>BA<br>CA<br>AB<br>BB<br>CB<br>AC<br>BC<br>CC
 		</td>
 		<td width=15 background="../terminal_right.gif">&nbsp;</td>
 	</tr>
@@ -175,7 +175,7 @@ a:visited { color: #3c2168 }
 		<td width=4 bgcolor="#ffffff"></td>
 		<td width=499 bgcolor="#ffffff" style="font-family: monaco; font-size: 9pt">
 		&gt; regldg --universe-set=1 &quot;--universe=[^D-\z{90}]&quot; &quot;.{2}&quot;<br>
-		AA<br>BA<br>CA<br>AB<br>BB<br>CB<br>AC<br>BC<br>CC 
+		AA<br>BA<br>CA<br>AB<br>BB<br>CB<br>AC<br>BC<br>CC
 		</td>
 		<td width=15 background="../terminal_right.gif">&nbsp;</td>
 	</tr>
@@ -278,7 +278,7 @@ a:visited { color: #3c2168 }
 		<td colspan=4 width=512 height=24><img src="../terminal_bottom.gif"></td>
 	</tr>
 	</table>
-	<p>	
+	<p>
 	It did allow us to start words with Z, which wasn't in the character universe,
 	but why are we getting ASCII characters starting from 0?  The problem is the <b>.</b>
 	metacharacter.  As explained above, regldg allows you to make metacharacters retain

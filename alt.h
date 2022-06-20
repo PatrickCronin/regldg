@@ -1,21 +1,6 @@
-/* regldg version 1.0.0
-** a regular expression grammar language dictionary generator
-** (c) Patrick Cronin 2004-2006
-** pcronin@loyola.edu
-**
-** Permission is granted to use, alter, and distribute this
-** code under the terms of the GNU Public License.  A copy
-** of this license should have been included with this
-** software in the file gpl.txt.  If you need a copy, please
-** visit http://www.gnu.org/copyleft/gpl.html.
-**
+/*
 ** alt.h
 ** A record to keep track of alternation nodes.
-** 21 August 2004
-** Updated 15 April 2006 - added a new id section
-**   id1 for tnode
-**   id2 for same tnode, different occurrence
-**   used in regexps with a multiple/variable length group with alternation like (a|b){2}
 */
 
 #ifndef ALT_H

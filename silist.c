@@ -1,19 +1,8 @@
-/* regldg version 1.0.0
-** a regular expression grammar language dictionary generator
-** (c) Patrick Cronin 2004-2006
-** pcronin@loyola.edu
-**
-** Permission is granted to use, alter, and distribute this
-** code under the terms of the GNU Public License.  A copy
-** of this license should have been included with this
-** software in the file gpl.txt.  If you need a copy, please
-** visit http://www.gnu.org/copyleft/gpl.html.
-**
+/*
 ** silist.c
 ** A simple list structure for integers.
 ** Best for small lists -- the list is stored in consecutive
 ** memory addresses.
-** 27 February 2004
 */
 
 #include <stdio.h>
@@ -38,7 +27,7 @@ void silist_init(silist s)
 int silist_find(silist s, int n)
 {
     int c=0;
-    
+
     while (c < s->size) {
 	if (s->list[c] == n) {
 	    return(c);
@@ -92,7 +81,7 @@ silist silist_copy_deep(silist oldlist)
 {
     int n;
     silist newlist = silist_constructor();
-    
+
     newlist->size = oldlist->size;
     newlist->list = (int *) check_malloc (sizeof(int) * (newlist->size));
 

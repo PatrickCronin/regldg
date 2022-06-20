@@ -1,14 +1,4 @@
-/* regldg version 1.0.0
-** a regular expression grammar language dictionary generator
-** (c) Patrick Cronin 2004-2006
-** pcronin@loyola.edu
-**
-** Permission is granted to use, alter, and distribute this
-** code under the terms of the GNU Public License.  A copy
-** of this license should have been included with this
-** software in the file gpl.txt.  If you need a copy, please
-** visit http://www.gnu.org/copyleft/gpl.html.
-**
+/*
 ** build_structs.c
 ** Read the element tree, and build permutation structures
 ** for each possible arrangement of the varying length
@@ -38,7 +28,7 @@ void buildstructs_gvlists (tnode n, grouplist glist, vlrlist vlist, altlist alis
     tnode * nptr = (tnode *) n->child_list;
     int i;
 
-    /* if node is a leaf, and it is varying length, 
+    /* if node is a leaf, and it is varying length,
     **   add it to the vlist
     **
     ** if node is a group,
@@ -133,7 +123,7 @@ void buildstructs_fill_perm (re_perm r, tnode t, grouplist glist, vlrlist vlist,
 			/* it is fixed length */
 			limit = t->length_min;
 		}
-		
+
 		for (i = 0; i < limit; i++) {
 			nptr = (tnode *) t->child_list;
 			/* visit the children */
@@ -161,7 +151,7 @@ void buildstructs_fill_perm (re_perm r, tnode t, grouplist glist, vlrlist vlist,
 				/* it is fixed length */
 				limit = t->length_min;
 			}
-			
+
 			for (i = 0; i < limit; i++) {
 				atom = perm_atom_constructor();
 				char_set_g_deep_copy(atom->chars, t->chars);
@@ -211,7 +201,7 @@ int buildstructs_new_perm (tnode head, vlrlist vlist, altlist alist)
 
 	/* Perm the vlist */
     vlist_stop = buildstructs_perm_vlist(vlist, 0);
-		
+
     if (vlist_stop == -1) {
 		if (buildstructs_perm_alist(alist, 0) == -1) {
 			return (0);
